@@ -30,7 +30,7 @@ export const login = createAsyncThunk(
     async (userData: IUser, thunkApi) => {
         const { login, password } = userData
         try {
-            const response = await axios.get<IUser[]>('http://localhost:3000/users')
+            const response = await axios.get<IUser[]>('https://parking-lviv-admin.herokuapp.com/users')
             const user = response.data.find(u => u.login === login && u.password === password)
             console.log('user', user)
 

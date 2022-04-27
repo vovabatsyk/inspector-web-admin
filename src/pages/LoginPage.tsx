@@ -15,8 +15,8 @@ export const LoginPage = () => {
 		dispatch(
 			login({
 				id: '0',
-				login: 'admin23',
-				password: '12sd34',
+				login: values.username,
+				password: values.password,
 				username: ''
 			})
 		)

@@ -5,7 +5,6 @@ import { combineReducers, configureStore } from '@reduxjs/toolkit'
 import noticeReducer from './reducers/NoticeSlice'
 import userReducer from './reducers/UserSlice'
 const rootReducer = combineReducers({
-    noticeReducer,
     userReducer,
     [noticesApi.reducerPath]: noticesApi.reducer,
     [questionApi.reducerPath]: questionApi.reducer,
