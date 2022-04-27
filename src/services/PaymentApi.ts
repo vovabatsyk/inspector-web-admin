@@ -8,7 +8,7 @@ export const paymentApi = createApi({
     reducerPath: 'paymentApi',
     tagTypes: ['Payment'],
     baseQuery: fetchBaseQuery({
-        baseUrl: 'http://localhost:3000/'
+        baseUrl: ' https://parking-lviv-admin.herokuapp.com/'
     }),
     endpoints: build => ({
         getPayment: build.query<IPayment, number>({

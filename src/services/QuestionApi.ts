@@ -8,7 +8,7 @@ export const questionApi = createApi({
     reducerPath: 'questionApi',
     tagTypes: ['Questions', 'Question'],
     baseQuery: fetchBaseQuery({
-        baseUrl: 'http://localhost:3000/'
+        baseUrl: ' https://parking-lviv-admin.herokuapp.com/'
     }),
     endpoints: build => ({
         getQuestions: build.query<IQuestion[], number>({

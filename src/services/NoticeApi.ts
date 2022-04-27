@@ -8,7 +8,7 @@ export const noticesApi = createApi({
     reducerPath: 'noticeApi',
     tagTypes: ['Notices', 'Notice'],
     baseQuery: fetchBaseQuery({
-        baseUrl: 'http://localhost:3000/'
+        baseUrl: ' https://parking-lviv-admin.herokuapp.com/'
     }),
     endpoints: build => ({
         getNotices: build.query<INotice[], number>({
