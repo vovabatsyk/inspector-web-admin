@@ -31,6 +31,7 @@ export const userSlice = createSlice({
             state.error = ''
             state.user = action.payload
             state.auth = true
+
         },
         [login.pending.type]: (state) => {
             state.isLoading = true

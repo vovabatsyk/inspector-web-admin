@@ -3,7 +3,9 @@ import { Navigate, Route, Routes } from 'react-router-dom'
 import { useAppSelector } from '../hooks/redux'
 import { AddNoticePage } from '../pages/AddNoticePage'
 import { AddQuestionPage } from '../pages/AddQuestionPage'
+import { EditNoticePage } from '../pages/EditNoticePage'
 import { EditPaymentPage } from '../pages/EditPaymentPage'
+import { EditQuestionPage } from '../pages/EditQuestionPage'
 import HomePage from '../pages/HomePage'
 import { LoginPage } from '../pages/LoginPage'
 import { routes } from '../routes'
@@ -11,11 +13,7 @@ import { useGetPaymentQuery } from '../services/PaymentApi'
 
 export const AppRouter = () => {
 	const { auth } = useAppSelector(state => state.userReducer)
-	const {
-		data: payment,
-		isLoading,
-		isSuccess
-	} = useGetPaymentQuery(1)
+	const { data: payment } = useGetPaymentQuery(1)
 	return (
 		<>
 			{auth ? (
@@ -26,8 +24,16 @@ export const AppRouter = () => {
 						element={<AddNoticePage />}
 					/>
 					<Route
+						path={`${routes.EDIT_NOTICE_PAGE}/:id`}
+						element={<EditNoticePage />}
+					/>
+					<Route
 						path={routes.ADD_QUESTION_PAGE}
 						element={<AddQuestionPage />}
+					/>
+					<Route
+						path={`${routes.EDIT_QUESTION_PAGE}/:id`}
+						element={<EditQuestionPage />}
 					/>
 					<Route
 						path={routes.EDIT_PAYMENT_PAGE}

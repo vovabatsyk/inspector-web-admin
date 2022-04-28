@@ -8,7 +8,8 @@ export const noticesApi = createApi({
     reducerPath: 'noticeApi',
     tagTypes: ['Notices', 'Notice'],
     baseQuery: fetchBaseQuery({
-        baseUrl: ' https://parking-lviv-admin.herokuapp.com/'
+        baseUrl: 'https://parking-lviv-admin.herokuapp.com/'
+        // baseUrl: 'http://localhost:3000/'
     }),
     endpoints: build => ({
         getNotices: build.query<INotice[], number>({
@@ -24,13 +25,25 @@ export const noticesApi = createApi({
             invalidatesTags: ['Notices']
         }),
         deleteNotice: build.mutation({
-            query: (id: string) => ({
+            query: (id) => ({
                 url: `notices/${id}`,
                 method: 'DELETE'
             }),
             invalidatesTags: ['Notices']
         }),
+        getContact: build.query<INotice, string>({
+            query: id => `notices/${id}`,
+            providesTags: ['Notice']
+        }),
+        editNotice: build.mutation({
+            query: ({ id, ...body }) => ({
+                url: `notices/${id}`,
+                method: 'PUT',
+                body
+            }),
+            invalidatesTags: ['Notice']
+        })
     })
 })
 
-export const { useGetNoticesQuery, useAddNoticeMutation, useDeleteNoticeMutation } = noticesApi
+export const { useGetNoticesQuery, useAddNoticeMutation, useDeleteNoticeMutation, useGetContactQuery, useEditNoticeMutation } = noticesApi

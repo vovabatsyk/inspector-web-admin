@@ -60,9 +60,11 @@ export const Questions = () => {
 									style={{ color: COLORS.secondary }}
 									icon={<EditOutlined />}
 									key='edit'
-									// onClick={() =>
-									// 	navigate(`/banks/edit/${bank.id}`)
-									// }
+									onClick={() =>
+										navigate(
+											`${routes.EDIT_QUESTION_PAGE}/${item.id}`
+										)
+									}
 								/>,
 								<Popconfirm
 									title='Ви впевнені？'
