@@ -6,7 +6,14 @@ export const questionApi = createApi({
   tagTypes: ['Questions', 'Question'],
   baseQuery: fetchBaseQuery({
     baseUrl: 'http://localhost:5000/api/',
-    // baseUrl: 'http://localhost:3000/'
+    prepareHeaders: (headers, { getState }) => {
+      const token = localStorage.getItem('token')
+
+      if (token) {
+        headers.set('Authorization', `Bearer ${token}`)
+      }
+      return headers
+    },
   }),
   endpoints: (build) => ({
     getQuestions: build.query<IQuestion[], number>({

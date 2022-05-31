@@ -25,10 +25,14 @@ export const EditQuestionPage = () => {
   }, [data])
 
   const handleUpdate = async () => {
-    if (question) {
-      await updateQuestion(question)
-      message.success('Збережено успішно')
-      navigate('/')
+    try {
+      if (question) {
+        await updateQuestion(question)
+        message.success('Збережено успішно')
+        navigate('/')
+      }
+    } catch (e: any) {
+      message.error(e.data.message as string)
     }
   }
 

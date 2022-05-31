@@ -1,38 +1,59 @@
 import { Layout } from 'antd'
-import React, { useEffect } from 'react'
-import { AppRouter } from './components/AppRouter'
+import { useEffect, useState } from 'react'
+import { Navigate, Route, Routes, useNavigate } from 'react-router-dom'
 import { NavBar } from './components/NavBar'
-import { useAppDispatch, useAppSelector } from './hooks/redux'
-// import { fetchNotices, login } from './store/reducers/ActionCreators'
+import { AddNoticePage } from './pages/AddNoticePage'
+import { AddQuestionPage } from './pages/AddQuestionPage'
+import { EditNoticePage } from './pages/EditNoticePage'
+import { EditPaymentPage } from './pages/EditPaymentPage'
+import { EditQuestionPage } from './pages/EditQuestionPage'
+import HomePage from './pages/HomePage'
+import { LoginPage } from './pages/LoginPage'
+import { routes } from './routes'
+import { useGetPaymentQuery } from './services/PaymentApi'
 
 function App() {
-	const dispatch = useAppDispatch()
-	// const { notices, isLoading, error } = useAppSelector(
-	// 	state => state.noticeReducer
-	// )
+  const navigate = useNavigate()
+  const localToken = localStorage.getItem('token')
+  const { data: payment } = useGetPaymentQuery(1)
 
-	const { user, auth } = useAppSelector(state => state.userReducer)
+  useEffect(() => {
+    if (localToken) {
+      console.log('localToken', localToken)
 
-	// useEffect(() => {
-	// 	dispatch(fetchNotices())
-	// 	// dispatch(
-	// 	// 	login({
-	// 	// 		login: 'admin',
-	// 	// 		password: '1234',
-	// 	// 		id: 0,
-	// 	// 		username: ''
-	// 	// 	})
-	// 	// )
-	// }, [])
-	return (
-		<Layout>
-			{auth && <NavBar />}
+      navigate('../')
+    }
+  }, [localToken])
 
-			<Layout.Content>
-				<AppRouter />
-			</Layout.Content>
-		</Layout>
-	)
+  return (
+    <Layout>
+      <NavBar />
+
+      <Layout.Content>
+        <Routes>
+          {localToken ? (
+            <>
+              <Route path={routes.HOME_PAGE} element={<HomePage />} />
+              <Route path={routes.ADD_NOTICE_PAGE} element={<AddNoticePage />} />
+              <Route path={`${routes.EDIT_NOTICE_PAGE}/:id`} element={<EditNoticePage />} />
+              <Route path={routes.ADD_QUESTION_PAGE} element={<AddQuestionPage />} />
+              <Route path={`${routes.EDIT_QUESTION_PAGE}/:id`} element={<EditQuestionPage />} />
+              <Route
+                path={routes.EDIT_PAYMENT_PAGE}
+                element={<EditPaymentPage payment={payment} />}
+              />
+              <Route path='*' element={<Navigate to='/' replace />} />
+            </>
+          ) : (
+            <>
+              <Route path={routes.LOGIN_PAGE} element={<LoginPage />} />
+              <Route path='*' element={<Navigate to='/login' replace />} />
+            </>
+          )}
+        </Routes>
+      </Layout.Content>
+    </Layout>
+  )
 }
 
 export default App

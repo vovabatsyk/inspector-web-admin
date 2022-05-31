@@ -3,65 +3,46 @@ import { LogoutOutlined } from '@ant-design/icons'
 import { useNavigate } from 'react-router-dom'
 import { useAppSelector } from '../hooks/redux'
 import { useEffect } from 'react'
+import { setUser } from '../store/reducers/AuthSlice'
+import { useDispatch } from 'react-redux'
 
 const menuItems: MenuProps['items'] = [
-	{
-		label: 'Вийти',
-		key: 'logout',
-		icon: <LogoutOutlined />
-	}
-]
-const menuItemsPrivate: MenuProps['items'] = [
-	{
-		label: 'Ввійти',
-		key: 'login',
-		icon: <LogoutOutlined />
-	}
+  {
+    label: 'Вийти',
+    key: 'logout',
+    icon: <LogoutOutlined />,
+  },
 ]
 
 export const NavBar = () => {
-	const { user, auth } = useAppSelector(state => state.userReducer)
+  const localToken = localStorage.getItem('token')
 
-	const navigate = useNavigate()
+  const navigate = useNavigate()
 
-	const onClickMenu: MenuProps['onClick'] = e => {
-		switch (e.key) {
-			case 'logout':
-				navigate('/login')
-				break
+  const onClickMenu = () => {
+    console.log('1')
 
-			default:
-				navigate('/')
-		}
-	}
+    localStorage.removeItem('token')
+    console.log('2')
 
-	useEffect(() => {
-		console.log('auth', auth, user)
-	}, [])
+    navigate('/login')
+    console.log('3')
+  }
 
-	return (
-		<Layout.Header>
-			{auth ? (
-				<>
-					<Menu
-						theme='dark'
-						mode='horizontal'
-						selectable={false}
-						items={menuItems}
-						style={{ justifyContent: 'flex-end' }}
-						onClick={onClickMenu}
-					></Menu>
-				</>
-			) : (
-				<Menu
-					theme='dark'
-					mode='horizontal'
-					selectable={false}
-					items={menuItemsPrivate}
-					style={{ justifyContent: 'flex-end' }}
-					onClick={onClickMenu}
-				></Menu>
-			)}
-		</Layout.Header>
-	)
+  return (
+    <Layout.Header>
+      {localToken && (
+        <>
+          <Menu
+            theme='dark'
+            mode='horizontal'
+            selectable={false}
+            items={menuItems}
+            style={{ justifyContent: 'flex-end' }}
+            onClick={onClickMenu}
+          ></Menu>
+        </>
+      )}
+    </Layout.Header>
+  )
 }

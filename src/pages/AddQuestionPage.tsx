@@ -9,11 +9,15 @@ export const AddQuestionPage = () => {
   const navigate = useNavigate()
 
   const onFinish = async (values: any) => {
-    await addQuestion({
-      title: values.question,
-      description: values.answer,
-    }).unwrap()
-    message.success('Додано успішно!')
+    try {
+      await addQuestion({
+        title: values.question,
+        description: values.answer,
+      }).unwrap()
+      message.success('Додано успішно!')
+    } catch (e: any) {
+      message.error(e.data.message as string)
+    }
 
     navigate('/')
   }

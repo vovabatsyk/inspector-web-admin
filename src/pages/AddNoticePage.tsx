@@ -5,44 +5,43 @@ import { PageContainer } from '../components/ui/PageContainer'
 import { useAddNoticeMutation } from '../services/NoticeApi'
 
 export const AddNoticePage = () => {
-	const [addNotice] = useAddNoticeMutation()
-	const navigate = useNavigate()
+  const [addNotice] = useAddNoticeMutation()
+  const navigate = useNavigate()
 
-	const onFinish = async (values: any) => {
-		await addNotice({
-			title: values.title,
-			description: values.description
-		}).unwrap()
-		message.success('Додано успішно!')
+  const onFinish = async (values: any) => {
+    try {
+      await addNotice({
+        title: values.title,
+        description: values.description,
+      }).unwrap()
+      message.success('Додано успішно!')
+    } catch (e: any) {
+      message.error(e.data.message as string)
+    }
 
-		navigate('/')
-	}
+    navigate('/')
+  }
 
-	const onFinishFailed = (errorInfo: any) => {
-		console.log('Failed:', errorInfo)
-	}
-	return (
-		<PageContainer title='Створити повідомлення'>
-			<Form
-				name='basic'
-				onFinish={onFinish}
-				onFinishFailed={onFinishFailed}
-				autoComplete='off'
-			>
-				<Form.Item label='Заголовок' name='title'>
-					<Input />
-				</Form.Item>
+  const onFinishFailed = (errorInfo: any) => {
+    console.log('Failed:', errorInfo)
+  }
+  return (
+    <PageContainer title='Створити повідомлення'>
+      <Form name='basic' onFinish={onFinish} onFinishFailed={onFinishFailed} autoComplete='off'>
+        <Form.Item label='Заголовок' name='title'>
+          <Input />
+        </Form.Item>
 
-				<Form.Item label='Опис' name='description'>
-					<Input.TextArea rows={4} />
-				</Form.Item>
+        <Form.Item label='Опис' name='description'>
+          <Input.TextArea rows={4} />
+        </Form.Item>
 
-				<Form.Item>
-					<Button type='primary' htmlType='submit'>
-						Зберегти
-					</Button>
-				</Form.Item>
-			</Form>
-		</PageContainer>
-	)
+        <Form.Item>
+          <Button type='primary' htmlType='submit'>
+            Зберегти
+          </Button>
+        </Form.Item>
+      </Form>
+    </PageContainer>
+  )
 }

@@ -2,12 +2,14 @@ import { paymentApi } from './../services/PaymentApi'
 import { questionApi } from './../services/QuestionApi'
 import { noticesApi } from './../services/NoticeApi'
 import { combineReducers, configureStore } from '@reduxjs/toolkit'
-import userReducer from './reducers/UserSlice'
+import authReducer from './reducers/AuthSlice'
+import { authApi } from '../services/AuthApi'
 const rootReducer = combineReducers({
-  userReducer,
+  authReducer,
   [noticesApi.reducerPath]: noticesApi.reducer,
   [questionApi.reducerPath]: questionApi.reducer,
   [paymentApi.reducerPath]: paymentApi.reducer,
+  [authApi.reducerPath]: authApi.reducer,
 })
 
 export const setupStore = () => {
@@ -17,6 +19,7 @@ export const setupStore = () => {
       getDefaultMiddleware()
         .concat(noticesApi.middleware)
         .concat(questionApi.middleware)
+        .concat(authApi.middleware)
         .concat(paymentApi.middleware),
   })
 }

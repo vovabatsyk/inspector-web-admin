@@ -2,79 +2,73 @@ import { Layout, Row, Form, Input, Button, Card, message } from 'antd'
 import React from 'react'
 import { useAppDispatch, useAppSelector } from '../hooks/redux'
 import { rules } from '../utils/rules'
-import { login } from '../store/reducers/ActionCreators'
+// import { login } from '../store/reducers/ActionCreators'
+import { useLoginMutation } from '../services/AuthApi'
+import { useNavigate } from 'react-router-dom'
+import { setUser } from '../store/reducers/AuthSlice'
+import { AnyRecord } from 'dns'
 
 export const LoginPage = () => {
-	const dispatch = useAppDispatch()
+  const dispatch = useAppDispatch()
+  const [login] = useLoginMutation()
 
-	const { error, isLoading } = useAppSelector(
-		state => state.userReducer
-	)
+  const navigate = useNavigate()
 
-	const onFinish = (values: any) => {
-		dispatch(
-			login({
-				id: '0',
-				login: values.username,
-				password: values.password,
-				username: ''
-			})
-		)
-		console.log('Success:', values)
-	}
+  const onFinish = async (values: any) => {
+    try {
+      const token: any = await login({ email: values.email, password: values.password })
+      if (token.data.token) {
+        console.log('Success:', token.data.token.token)
+        dispatch(setUser({ token: token.data.token.token }))
+        await localStorage.setItem('token', token.data.token.token)
+      }
 
-	const onFinishFailed = (errorInfo: any) => {
-		console.log('Failed:', errorInfo)
-	}
-	return (
-		<Layout>
-			<Row
-				justify='center'
-				align='middle'
-				style={{ height: '100vh' }}
-			>
-				<>
-					{error && message.error(error)}
+      navigate('../')
+    } catch (error) {
+      message.error('Не правельний email або пароль')
+    }
+  }
 
-					<Card title='Управління безпеки'>
-						<Form
-							name='basic'
-							labelCol={{ span: 8 }}
-							wrapperCol={{ span: 16 }}
-							initialValues={{ remember: true }}
-							onFinish={onFinish}
-							onFinishFailed={onFinishFailed}
-							autoComplete='off'
-						>
-							<Form.Item
-								label='Імя'
-								name='username'
-								rules={[rules.required('Введіть імя користувача!')]}
-							>
-								<Input />
-							</Form.Item>
+  const onFinishFailed = (errorInfo: any) => {
+    console.log('Failed:', errorInfo)
+  }
+  return (
+    <Layout>
+      <Row justify='center' align='middle' style={{ height: '100vh' }}>
+        <>
+          {/* {error && message.error(error)} */}
 
-							<Form.Item
-								label='Пароль'
-								name='password'
-								rules={[rules.required('Введіть пароль!')]}
-							>
-								<Input.Password />
-							</Form.Item>
+          <Card title='Управління безпеки'>
+            <Form
+              name='basic'
+              labelCol={{ span: 8 }}
+              wrapperCol={{ span: 16 }}
+              initialValues={{ remember: true }}
+              onFinish={onFinish}
+              onFinishFailed={onFinishFailed}
+              autoComplete='off'
+            >
+              <Form.Item
+                label='email'
+                name='email'
+                rules={[rules.required('Введіть email користувача!')]}
+              >
+                <Input />
+              </Form.Item>
 
-							<Form.Item wrapperCol={{ offset: 8, span: 16 }}>
-								<Button
-									type='primary'
-									htmlType='submit'
-									loading={isLoading}
-								>
-									Вхід
-								</Button>
-							</Form.Item>
-						</Form>
-					</Card>
-				</>
-			</Row>
-		</Layout>
-	)
+              <Form.Item label='Пароль' name='password' rules={[rules.required('Введіть пароль!')]}>
+                <Input.Password />
+              </Form.Item>
+
+              <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
+                <Button type='primary' htmlType='submit'>
+                  Вхід
+                </Button>
+              </Form.Item>
+            </Form>
+          </Card>
+        </>
+      </Row>
+    </Layout>
+  )
 }

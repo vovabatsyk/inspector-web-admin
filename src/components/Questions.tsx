@@ -12,9 +12,13 @@ export const Questions = () => {
   const navigate = useNavigate()
 
   const onDeleteNotice = async (id: any) => {
-    await deleteQuestion(id).unwrap()
-    if (isSuccess) message.success('Видалено успішно!')
-    if (isError) message.error(error as string)
+    try {
+      await deleteQuestion(id).unwrap()
+      if (isSuccess) message.success('Видалено успішно!')
+      if (isError) message.error(error as string)
+    } catch (e: any) {
+      message.error(e.data.message as string)
+    }
   }
   return (
     <>
