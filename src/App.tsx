@@ -4,6 +4,7 @@ import { Navigate, Route, Routes, useNavigate } from 'react-router-dom'
 import { NavBar } from './components/NavBar'
 import { AddNoticePage } from './pages/AddNoticePage'
 import { AddQuestionPage } from './pages/AddQuestionPage'
+import { AddUserPage } from './pages/AddUserPage'
 import { EditNoticePage } from './pages/EditNoticePage'
 import { EditPaymentPage } from './pages/EditPaymentPage'
 import { EditQuestionPage } from './pages/EditQuestionPage'
@@ -39,6 +40,7 @@ function App() {
               <Route path={`${routes.EDIT_NOTICE_PAGE}/:id`} element={<EditNoticePage />} />
               <Route path={routes.ADD_QUESTION_PAGE} element={<AddQuestionPage />} />
               <Route path={routes.USERS_PAGE} element={<UsersPage />} />
+              <Route path={routes.ADD_USER_PAGE} element={<AddUserPage />} />
               <Route path={`${routes.EDIT_QUESTION_PAGE}/:id`} element={<EditQuestionPage />} />
               <Route
                 path={routes.EDIT_PAYMENT_PAGE}

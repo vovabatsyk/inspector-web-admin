@@ -23,18 +23,17 @@ export const fetchNotices = createAsyncThunk('notice/fetchAll', async (_, thunkA
 })
 
 export const login = createAsyncThunk('login', async (userData: IUser, thunkApi) => {
-  const { login, password } = userData
-  try {
-    const response = await axios.get<IUser[]>('https://parking-lviv-admin.herokuapp.com/users')
-    // const response = await axios.get<IUser[]>('http://localhost:3000/users')
-    const user = response.data.find((u) => u.login === login && u.password === password)
-
-    if (user) {
-      localStorage.setItem('auth', 'true')
-      localStorage.setItem('username', user.login)
-      return user
-    } else return
-  } catch (error) {
-    return thunkApi.rejectWithValue('Не вдалося знайти користувача!')
-  }
+  // const { login, password } = userData
+  // try {
+  //   const response = await axios.get<IUser[]>('https://parking-lviv-admin.herokuapp.com/users')
+  //   // const response = await axios.get<IUser[]>('http://localhost:3000/users')
+  //   const user = response.data.find((u) => u.login === login && u.password === password)
+  //   if (user) {
+  //     localStorage.setItem('auth', 'true')
+  //     localStorage.setItem('username', user.login)
+  //     return user
+  //   } else return
+  // } catch (error) {
+  //   return thunkApi.rejectWithValue('Не вдалося знайти користувача!')
+  // }
 })

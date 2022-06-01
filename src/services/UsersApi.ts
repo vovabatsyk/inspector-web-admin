@@ -1,11 +1,12 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
+import { IUser } from '../models/IUser'
 import { IUserData } from '../models/IUserData'
 
 export const usersApi = createApi({
   reducerPath: 'usersApi',
   tagTypes: ['Users', 'User'],
   baseQuery: fetchBaseQuery({
-    baseUrl: 'http://localhost:5000/api/',
+    baseUrl: 'http://localhost:5000/',
     prepareHeaders: (headers, { getState }) => {
       const token = localStorage.getItem('token')
 
@@ -17,20 +18,20 @@ export const usersApi = createApi({
   }),
   endpoints: (build) => ({
     getUsers: build.query<IUserData[], number>({
-      query: (limit = 150) => ({ url: 'users' }),
+      query: (limit = 150) => ({ url: 'api/users' }),
       providesTags: ['Users', 'User'],
     }),
-    // addNotice: build.mutation({
-    //   query: (body: INotice) => ({
-    //     url: 'notices',
-    //     method: 'POST',
-    //     body,
-    //   }),
-    //   invalidatesTags: ['Notices'],
-    // }),
+    addUser: build.mutation({
+      query: (body: IUser) => ({
+        url: 'auth/registration',
+        method: 'POST',
+        body,
+      }),
+      invalidatesTags: ['Users'],
+    }),
     deleteUser: build.mutation({
       query: (id) => ({
-        url: `users/${id}`,
+        url: `api/users/${id}`,
         method: 'DELETE',
       }),
       invalidatesTags: ['Users'],
@@ -50,4 +51,4 @@ export const usersApi = createApi({
   }),
 })
 
-export const { useGetUsersQuery, useDeleteUserMutation } = usersApi
+export const { useGetUsersQuery, useDeleteUserMutation, useAddUserMutation } = usersApi

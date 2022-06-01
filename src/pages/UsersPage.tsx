@@ -34,7 +34,7 @@ export const UsersPage = () => {
           type='text'
           style={{ color: COLORS.success }}
           key='add'
-          onClick={() => navigate(routes.ADD_QUESTION_PAGE)}
+          onClick={() => navigate(`../${routes.ADD_USER_PAGE}`)}
         >
           Додати
         </Button>
