@@ -1,12 +1,19 @@
 import { Menu, MenuProps, Layout } from 'antd'
-import { LogoutOutlined } from '@ant-design/icons'
+import { LogoutOutlined, UsergroupAddOutlined, DribbbleOutlined } from '@ant-design/icons'
 import { useNavigate } from 'react-router-dom'
-import { useAppSelector } from '../hooks/redux'
-import { useEffect } from 'react'
-import { setUser } from '../store/reducers/AuthSlice'
-import { useDispatch } from 'react-redux'
+import { routes } from '../routes'
 
 const menuItems: MenuProps['items'] = [
+  {
+    label: 'Користувачі',
+    key: 'users',
+    icon: <UsergroupAddOutlined />,
+  },
+  {
+    label: 'Сайт',
+    key: 'web',
+    icon: <DribbbleOutlined />,
+  },
   {
     label: 'Вийти',
     key: 'logout',
@@ -19,14 +26,22 @@ export const NavBar = () => {
 
   const navigate = useNavigate()
 
-  const onClickMenu = () => {
-    console.log('1')
+  const onClickMenu: MenuProps['onClick'] = (e: any) => {
+    switch (e.key) {
+      case 'logout':
+        localStorage.removeItem('token')
+        navigate(routes.LOGIN_PAGE)
+        break
+      case 'web':
+        navigate('/')
+        break
+      case 'users':
+        navigate(routes.USERS_PAGE)
+        break
 
-    localStorage.removeItem('token')
-    console.log('2')
-
-    navigate('/login')
-    console.log('3')
+      default:
+        break
+    }
   }
 
   return (

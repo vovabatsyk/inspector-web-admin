@@ -9,6 +9,7 @@ import { EditPaymentPage } from './pages/EditPaymentPage'
 import { EditQuestionPage } from './pages/EditQuestionPage'
 import HomePage from './pages/HomePage'
 import { LoginPage } from './pages/LoginPage'
+import { UsersPage } from './pages/UsersPage'
 import { routes } from './routes'
 import { useGetPaymentQuery } from './services/PaymentApi'
 
@@ -37,6 +38,7 @@ function App() {
               <Route path={routes.ADD_NOTICE_PAGE} element={<AddNoticePage />} />
               <Route path={`${routes.EDIT_NOTICE_PAGE}/:id`} element={<EditNoticePage />} />
               <Route path={routes.ADD_QUESTION_PAGE} element={<AddQuestionPage />} />
+              <Route path={routes.USERS_PAGE} element={<UsersPage />} />
               <Route path={`${routes.EDIT_QUESTION_PAGE}/:id`} element={<EditQuestionPage />} />
               <Route
                 path={routes.EDIT_PAYMENT_PAGE}
