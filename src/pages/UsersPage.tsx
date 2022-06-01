@@ -22,6 +22,7 @@ export const UsersPage = () => {
       if (isSuccess) message.success('Видалено успішно!')
       if (isError) message.error(error as string)
     } catch (e: any) {
+      console.log(e)
       message.error(e.data.message as string)
     }
   }
@@ -54,7 +55,7 @@ export const UsersPage = () => {
                   style={{ color: COLORS.secondary }}
                   icon={<EditOutlined />}
                   key='edit'
-                  // onClick={() => navigate(`${routes.EDIT_QUESTION_PAGE}/${item.id}`)}
+                  onClick={() => navigate(`../${routes.EDIT_USER_PAGE}/${item.id}`)}
                 />,
                 <Popconfirm
                   title='Ви впевнені？'

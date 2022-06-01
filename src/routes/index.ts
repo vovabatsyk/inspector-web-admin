@@ -8,4 +8,5 @@ export enum routes {
   EDIT_PAYMENT_PAGE = 'edit-payment',
   USERS_PAGE = 'users',
   ADD_USER_PAGE = 'add-user',
+  EDIT_USER_PAGE = 'edit-user',
 }

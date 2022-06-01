@@ -8,6 +8,7 @@ import { AddUserPage } from './pages/AddUserPage'
 import { EditNoticePage } from './pages/EditNoticePage'
 import { EditPaymentPage } from './pages/EditPaymentPage'
 import { EditQuestionPage } from './pages/EditQuestionPage'
+import { EditUserPage } from './pages/EditUserPage'
 import HomePage from './pages/HomePage'
 import { LoginPage } from './pages/LoginPage'
 import { UsersPage } from './pages/UsersPage'
@@ -41,6 +42,7 @@ function App() {
               <Route path={routes.ADD_QUESTION_PAGE} element={<AddQuestionPage />} />
               <Route path={routes.USERS_PAGE} element={<UsersPage />} />
               <Route path={routes.ADD_USER_PAGE} element={<AddUserPage />} />
+              <Route path={`${routes.EDIT_USER_PAGE}/:id`} element={<EditUserPage />} />
               <Route path={`${routes.EDIT_QUESTION_PAGE}/:id`} element={<EditQuestionPage />} />
               <Route
                 path={routes.EDIT_PAYMENT_PAGE}

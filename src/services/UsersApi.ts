@@ -36,19 +36,25 @@ export const usersApi = createApi({
       }),
       invalidatesTags: ['Users'],
     }),
-    // getContact: build.query<INotice, string>({
-    //   query: (id) => `notices/${id}`,
-    //   providesTags: ['Notice'],
-    // }),
-    // editNotice: build.mutation({
-    //   query: ({ id, ...body }) => ({
-    //     url: `notices/${id}`,
-    //     method: 'PUT',
-    //     body,
-    //   }),
-    //   invalidatesTags: ['Notice'],
-    // }),
+    getUser: build.query<IUserData, string>({
+      query: (id) => `api/users/${id}`,
+      providesTags: ['Users'],
+    }),
+    updateUser: build.mutation({
+      query: ({ id, ...body }) => ({
+        url: `api/users/${id}`,
+        method: 'PUT',
+        body,
+      }),
+      invalidatesTags: ['User'],
+    }),
   }),
 })
 
-export const { useGetUsersQuery, useDeleteUserMutation, useAddUserMutation } = usersApi
+export const {
+  useGetUsersQuery,
+  useDeleteUserMutation,
+  useAddUserMutation,
+  useGetUserQuery,
+  useUpdateUserMutation,
+} = usersApi
