@@ -12,17 +12,12 @@ export const UsersPage = () => {
 
   const navigate = useNavigate()
 
-  useEffect(() => {
-    console.log(users)
-  }, [users])
-
   const onDeleteUser = async (id: number | undefined) => {
     try {
       await deleteUser(id).unwrap()
       if (isSuccess) message.success('Видалено успішно!')
       if (isError) message.error(error as string)
     } catch (e: any) {
-      console.log(e)
       message.error(e.data.message as string)
     }
   }

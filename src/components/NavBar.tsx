@@ -1,5 +1,10 @@
 import { Menu, MenuProps, Layout } from 'antd'
-import { LogoutOutlined, UsergroupAddOutlined, DribbbleOutlined } from '@ant-design/icons'
+import {
+  LogoutOutlined,
+  UsergroupAddOutlined,
+  DribbbleOutlined,
+  PicLeftOutlined,
+} from '@ant-design/icons'
 import { useNavigate } from 'react-router-dom'
 import { routes } from '../routes'
 
@@ -8,6 +13,11 @@ const menuItems: MenuProps['items'] = [
     label: 'Користувачі',
     key: 'users',
     icon: <UsergroupAddOutlined />,
+  },
+  {
+    label: 'Новини',
+    key: 'posts',
+    icon: <PicLeftOutlined />,
   },
   {
     label: 'Сайт',
@@ -37,6 +47,9 @@ export const NavBar = () => {
         break
       case 'users':
         navigate(routes.USERS_PAGE)
+        break
+      case 'posts':
+        navigate(routes.POSTS_PAGE)
         break
 
       default:

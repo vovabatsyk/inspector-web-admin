@@ -1,8 +1,9 @@
 import { Layout } from 'antd'
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { Navigate, Route, Routes, useNavigate } from 'react-router-dom'
 import { NavBar } from './components/NavBar'
 import { AddNoticePage } from './pages/AddNoticePage'
+import AddPostPage from './pages/AddPostPage'
 import { AddQuestionPage } from './pages/AddQuestionPage'
 import { AddUserPage } from './pages/AddUserPage'
 import { EditNoticePage } from './pages/EditNoticePage'
@@ -11,6 +12,8 @@ import { EditQuestionPage } from './pages/EditQuestionPage'
 import { EditUserPage } from './pages/EditUserPage'
 import HomePage from './pages/HomePage'
 import { LoginPage } from './pages/LoginPage'
+import PostPage from './pages/PostPage'
+import PostsPage from './pages/PostsPage'
 import { UsersPage } from './pages/UsersPage'
 import { routes } from './routes'
 import { useGetPaymentQuery } from './services/PaymentApi'
@@ -30,7 +33,7 @@ function App() {
 
   return (
     <Layout>
-      <NavBar />
+      {localToken && <NavBar />}
 
       <Layout.Content>
         <Routes>
@@ -41,14 +44,17 @@ function App() {
               <Route path={`${routes.EDIT_NOTICE_PAGE}/:id`} element={<EditNoticePage />} />
               <Route path={routes.ADD_QUESTION_PAGE} element={<AddQuestionPage />} />
               <Route path={routes.USERS_PAGE} element={<UsersPage />} />
+              <Route path={routes.POSTS_PAGE} element={<PostsPage />}></Route>
+              <Route path={routes.ADD_POST_PAGE} element={<AddPostPage />} />
               <Route path={routes.ADD_USER_PAGE} element={<AddUserPage />} />
               <Route path={`${routes.EDIT_USER_PAGE}/:id`} element={<EditUserPage />} />
               <Route path={`${routes.EDIT_QUESTION_PAGE}/:id`} element={<EditQuestionPage />} />
+              <Route path={`${routes.GET_POST}/:id`} element={<PostPage />} />
               <Route
                 path={routes.EDIT_PAYMENT_PAGE}
                 element={<EditPaymentPage payment={payment} />}
               />
-              <Route path='*' element={<Navigate to='/' replace />} />
+              {/* <Route path='*' element={<Navigate to='/' replace />} /> */}
             </>
           ) : (
             <>

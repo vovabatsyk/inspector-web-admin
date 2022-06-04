@@ -5,6 +5,8 @@ import { combineReducers, configureStore } from '@reduxjs/toolkit'
 import authReducer from './reducers/AuthSlice'
 import { authApi } from '../services/AuthApi'
 import { usersApi } from '../services/UsersApi'
+import { rolesApi } from '../services/RoleApi'
+import { postsApi } from '../services/PostApi'
 const rootReducer = combineReducers({
   authReducer,
   [noticesApi.reducerPath]: noticesApi.reducer,
@@ -12,6 +14,8 @@ const rootReducer = combineReducers({
   [paymentApi.reducerPath]: paymentApi.reducer,
   [authApi.reducerPath]: authApi.reducer,
   [usersApi.reducerPath]: usersApi.reducer,
+  [rolesApi.reducerPath]: rolesApi.reducer,
+  [postsApi.reducerPath]: postsApi.reducer,
 })
 
 export const setupStore = () => {
@@ -23,7 +27,9 @@ export const setupStore = () => {
         .concat(questionApi.middleware)
         .concat(authApi.middleware)
         .concat(paymentApi.middleware)
-        .concat(usersApi.middleware),
+        .concat(usersApi.middleware)
+        .concat(rolesApi.middleware)
+        .concat(postsApi.middleware),
   })
 }
 
