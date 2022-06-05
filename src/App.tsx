@@ -5,15 +5,18 @@ import { NavBar } from './components/NavBar'
 import { AddNoticePage } from './pages/AddNoticePage'
 import AddPostPage from './pages/AddPostPage'
 import { AddQuestionPage } from './pages/AddQuestionPage'
+import { AddStory } from './pages/AddStory'
 import { AddUserPage } from './pages/AddUserPage'
 import { EditNoticePage } from './pages/EditNoticePage'
 import { EditPaymentPage } from './pages/EditPaymentPage'
 import { EditQuestionPage } from './pages/EditQuestionPage'
+import { EditStory } from './pages/EditStory'
 import { EditUserPage } from './pages/EditUserPage'
 import HomePage from './pages/HomePage'
 import { LoginPage } from './pages/LoginPage'
 import PostPage from './pages/PostPage'
 import PostsPage from './pages/PostsPage'
+import { StoriesPage } from './pages/StoriesPage'
 import { UsersPage } from './pages/UsersPage'
 import { routes } from './routes'
 import { useGetPaymentQuery } from './services/PaymentApi'
@@ -47,9 +50,12 @@ function App() {
               <Route path={routes.POSTS_PAGE} element={<PostsPage />}></Route>
               <Route path={routes.ADD_POST_PAGE} element={<AddPostPage />} />
               <Route path={routes.ADD_USER_PAGE} element={<AddUserPage />} />
+              <Route path={routes.STORIES_PAGE} element={<StoriesPage />} />
+              <Route path={routes.ADD_STORY} element={<AddStory />} />
               <Route path={`${routes.EDIT_USER_PAGE}/:id`} element={<EditUserPage />} />
               <Route path={`${routes.EDIT_QUESTION_PAGE}/:id`} element={<EditQuestionPage />} />
               <Route path={`${routes.GET_POST}/:id`} element={<PostPage />} />
+              <Route path={`${routes.EDIT_STORY}/:id`} element={<EditStory />} />
               <Route
                 path={routes.EDIT_PAYMENT_PAGE}
                 element={<EditPaymentPage payment={payment} />}

@@ -4,6 +4,7 @@ import {
   UsergroupAddOutlined,
   DribbbleOutlined,
   PicLeftOutlined,
+  FormOutlined,
 } from '@ant-design/icons'
 import { useNavigate } from 'react-router-dom'
 import { routes } from '../routes'
@@ -18,6 +19,11 @@ const menuItems: MenuProps['items'] = [
     label: 'Новини',
     key: 'posts',
     icon: <PicLeftOutlined />,
+  },
+  {
+    label: 'Фабули',
+    key: 'stories',
+    icon: <FormOutlined />,
   },
   {
     label: 'Сайт',
@@ -50,6 +56,9 @@ export const NavBar = () => {
         break
       case 'posts':
         navigate(routes.POSTS_PAGE)
+        break
+      case 'stories':
+        navigate(routes.STORIES_PAGE)
         break
 
       default:

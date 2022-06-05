@@ -12,4 +12,7 @@ export enum routes {
   EDIT_USER_PAGE = 'edit-user',
   ADD_POST_PAGE = 'add-post',
   GET_POST = 'post',
+  STORIES_PAGE = 'stories',
+  ADD_STORY = 'add-story',
+  EDIT_STORY = 'edit-story',
 }
