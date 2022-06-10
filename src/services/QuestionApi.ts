@@ -1,11 +1,12 @@
-import { IQuestion } from './../models/IQuetion'
+import { IQuestion } from '../models/IQuestion'
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
+import { URL } from '../url'
 
 export const questionApi = createApi({
   reducerPath: 'questionApi',
   tagTypes: ['Questions', 'Question'],
   baseQuery: fetchBaseQuery({
-    baseUrl: 'http://localhost:5000/api/',
+    baseUrl: `${URL.DEFAULT}/api/`,
     prepareHeaders: (headers, { getState }) => {
       const token = localStorage.getItem('token')
 

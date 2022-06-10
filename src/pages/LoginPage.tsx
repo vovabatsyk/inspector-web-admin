@@ -1,11 +1,10 @@
 import { Layout, Row, Form, Input, Button, Card, message } from 'antd'
 import React from 'react'
-import { useAppDispatch, useAppSelector } from '../hooks/redux'
+import { useAppDispatch } from '../hooks/redux'
 import { rules } from '../utils/rules'
 import { useLoginMutation } from '../services/AuthApi'
 import { useNavigate } from 'react-router-dom'
 import { setUser } from '../store/reducers/AuthSlice'
-import { AnyRecord } from 'dns'
 
 export const LoginPage = () => {
   const dispatch = useAppDispatch()
@@ -17,7 +16,6 @@ export const LoginPage = () => {
     try {
       const token: any = await login({ email: values.email, password: values.password })
       if (token.data.token) {
-        console.log('Success:', token.data.token.token)
         dispatch(setUser({ token: token.data.token.token }))
         await localStorage.setItem('token', token.data.token.token)
       }
@@ -35,8 +33,6 @@ export const LoginPage = () => {
     <Layout>
       <Row justify='center' align='middle' style={{ height: '100vh' }}>
         <>
-          {/* {error && message.error(error)} */}
-
           <Card title='Управління безпеки'>
             <Form
               name='basic'

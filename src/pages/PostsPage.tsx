@@ -7,6 +7,7 @@ import { routes } from '../routes'
 import { useGetPostsQuery } from '../services/PostApi'
 import moment from 'moment'
 import { IPost } from '../models/IPost'
+import { URL } from '../url'
 
 const PostsPage = () => {
   const { Meta } = Card
@@ -46,7 +47,7 @@ const PostsPage = () => {
               key={idx}
               hoverable
               style={{ width: 300, margin: SIZES.margin }}
-              cover={<img alt='example' src={`http://localhost:5000/${p.image}`} />}
+              cover={<img alt='example' src={`${URL.DEFAULT}/${p.image}`} />}
               onClick={() => onPostClick(p.id!)}
             >
               <Meta

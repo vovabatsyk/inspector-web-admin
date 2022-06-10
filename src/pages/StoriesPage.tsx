@@ -57,7 +57,7 @@ export const StoriesPage = () => {
                   okText='Так'
                   cancelText='Ні'
                   placement='left'
-                  onConfirm={() => deleteStory(item.id)}
+                  onConfirm={() => onDeleteStory(item.id)}
                 >
                   <Button
                     type='text'

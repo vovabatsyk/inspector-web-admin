@@ -1,11 +1,12 @@
 import { IPayment } from './../models/IPayment'
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
+import { URL } from '../url'
 
 export const paymentApi = createApi({
   reducerPath: 'paymentApi',
   tagTypes: ['Payment'],
   baseQuery: fetchBaseQuery({
-    baseUrl: 'http://localhost:5000/api/',
+    baseUrl: `${URL.DEFAULT}/api/`,
     prepareHeaders: (headers, { getState }) => {
       const token = localStorage.getItem('token')
 

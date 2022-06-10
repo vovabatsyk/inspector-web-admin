@@ -1,11 +1,12 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import { IRole } from '../models/IRole'
+import { URL } from '../url'
 
 export const rolesApi = createApi({
   reducerPath: 'rolesApi',
   tagTypes: ['Roles', 'Role'],
   baseQuery: fetchBaseQuery({
-    baseUrl: 'http://localhost:5000/api',
+    baseUrl: `${URL.DEFAULT}/api/`,
     prepareHeaders: (headers, { getState }) => {
       const token = localStorage.getItem('token')
 
@@ -28,25 +29,6 @@ export const rolesApi = createApi({
       }),
       invalidatesTags: ['Roles'],
     }),
-    // deleteUser: build.mutation({
-    //   query: (id) => ({
-    //     url: `api/users/${id}`,
-    //     method: 'DELETE',
-    //   }),
-    //   invalidatesTags: ['Users'],
-    // }),
-    // getUser: build.query<IUserData, string>({
-    //   query: (id) => `api/users/${id}`,
-    //   providesTags: ['Users'],
-    // }),
-    // updateUser: build.mutation({
-    //   query: ({ id, ...body }) => ({
-    //     url: `api/users/${id}`,
-    //     method: 'PUT',
-    //     body,
-    //   }),
-    //   invalidatesTags: ['User'],
-    // }),
   }),
 })
 

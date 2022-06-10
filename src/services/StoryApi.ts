@@ -1,11 +1,12 @@
-import { INotice } from './../models/INotice'
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
+import { URL } from '../url'
+import { IStory } from '../models/IStory'
 
 export const storiesApi = createApi({
   reducerPath: 'storiesApi',
   tagTypes: ['Stories', 'Story'],
   baseQuery: fetchBaseQuery({
-    baseUrl: 'http://localhost:5000/api/',
+    baseUrl: `${URL.DEFAULT}/api/`,
     prepareHeaders: (headers, { getState }) => {
       const token = localStorage.getItem('token')
 
@@ -16,12 +17,12 @@ export const storiesApi = createApi({
     },
   }),
   endpoints: (build) => ({
-    getStories: build.query<INotice[], number>({
+    getStories: build.query<IStory[], number>({
       query: (limit = 5) => ({ url: 'violation-story' }),
       providesTags: ['Stories', 'Story'],
     }),
     addStory: build.mutation({
-      query: (body: INotice) => ({
+      query: (body: IStory) => ({
         url: 'violation-story',
         method: 'POST',
         body,
@@ -35,7 +36,7 @@ export const storiesApi = createApi({
       }),
       invalidatesTags: ['Stories'],
     }),
-    getStory: build.query<INotice, string>({
+    getStory: build.query<IStory, string>({
       query: (id) => `violation-story/${id}`,
       providesTags: ['Story'],
     }),

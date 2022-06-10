@@ -28,8 +28,6 @@ function App() {
 
   useEffect(() => {
     if (localToken) {
-      console.log('localToken', localToken)
-
       navigate('../')
     }
   }, [localToken])
@@ -60,7 +58,7 @@ function App() {
                 path={routes.EDIT_PAYMENT_PAGE}
                 element={<EditPaymentPage payment={payment} />}
               />
-              {/* <Route path='*' element={<Navigate to='/' replace />} /> */}
+              <Route path='*' element={<Navigate to='/' replace />} />
             </>
           ) : (
             <>

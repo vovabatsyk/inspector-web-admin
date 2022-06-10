@@ -8,6 +8,7 @@ import { ClockCircleOutlined } from '@ant-design/icons'
 import moment from 'moment'
 import { routes } from '../routes'
 import parse from 'html-react-parser'
+import { URL } from '../url'
 
 const { Meta } = Card
 
@@ -42,7 +43,7 @@ const PostPage = () => {
         <Card
           hoverable
           style={{ width: '80%' }}
-          cover={<img alt='example' src={`http://localhost:5000/${post?.image}`} />}
+          cover={<img alt='example' src={`${URL.DEFAULT}/${post?.image}`} />}
         >
           <Meta title={post?.title} />
           <div style={{ marginTop: SIZES.margin }}>{content}</div>

@@ -1,4 +1,4 @@
-import { Button, Form, Input, message, Upload, Row } from 'antd'
+import { Button, Form, Input, message, Upload } from 'antd'
 import React, { useEffect, useState } from 'react'
 import { PageContainer } from '../components/ui/PageContainer'
 import { UploadOutlined } from '@ant-design/icons'
@@ -16,10 +16,6 @@ const AddPostPage = () => {
   const [file, setFile] = useState<any>(null)
   const [id, setId] = useState('')
   const [content, setContent] = useState('')
-
-  const handleFile = (e: any) => {
-    setFile(e.target.files[0])
-  }
 
   useEffect(() => {
     const userToken = localStorage.getItem('token')
@@ -43,7 +39,7 @@ const AddPostPage = () => {
 
   const onFinishFailed = () => {}
   return (
-    <PageContainer title='Створити користувача'>
+    <PageContainer title='Створити новину'>
       <>
         <Form name='basic' onFinish={onFinish} onFinishFailed={onFinishFailed} autoComplete='off'>
           <Form.Item>

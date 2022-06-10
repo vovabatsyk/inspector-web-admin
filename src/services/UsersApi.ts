@@ -1,12 +1,13 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import { IUser } from '../models/IUser'
 import { IUserData } from '../models/IUserData'
+import { URL } from '../url'
 
 export const usersApi = createApi({
   reducerPath: 'usersApi',
   tagTypes: ['Users', 'User'],
   baseQuery: fetchBaseQuery({
-    baseUrl: 'http://localhost:5000/',
+    baseUrl: `${URL.DEFAULT}/api/`,
     prepareHeaders: (headers, { getState }) => {
       const token = localStorage.getItem('token')
 
@@ -18,7 +19,7 @@ export const usersApi = createApi({
   }),
   endpoints: (build) => ({
     getUsers: build.query<IUserData[], number>({
-      query: (limit = 150) => ({ url: 'api/users' }),
+      query: (limit = 150) => ({ url: '/users' }),
       providesTags: ['Users', 'User'],
     }),
     addUser: build.mutation({
@@ -31,18 +32,18 @@ export const usersApi = createApi({
     }),
     deleteUser: build.mutation({
       query: (id) => ({
-        url: `api/users/${id}`,
+        url: `users/${id}`,
         method: 'DELETE',
       }),
       invalidatesTags: ['Users'],
     }),
     getUser: build.query<IUserData, string>({
-      query: (id) => `api/users/${id}`,
+      query: (id) => `users/${id}`,
       providesTags: ['Users'],
     }),
     updateUser: build.mutation({
       query: ({ id, ...body }) => ({
-        url: `api/users/${id}`,
+        url: `users/${id}`,
         method: 'PUT',
         body,
       }),

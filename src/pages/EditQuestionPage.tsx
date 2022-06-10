@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { PageContainer } from '../components/ui/PageContainer'
 import { useParams, useNavigate } from 'react-router-dom'
 import { useEditQuestionMutation, useGetQuestionQuery } from '../services/QuestionApi'
-import { IQuestion } from '../models/IQuetion'
+import { IQuestion } from '../models/IQuestion'
 import { message, Input, Button } from 'antd'
 import { COLORS, SIZES } from '../theme'
 

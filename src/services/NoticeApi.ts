@@ -1,11 +1,12 @@
 import { INotice } from './../models/INotice'
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
+import { URL } from '../url'
 
 export const noticesApi = createApi({
   reducerPath: 'noticeApi',
   tagTypes: ['Notices', 'Notice'],
   baseQuery: fetchBaseQuery({
-    baseUrl: 'http://localhost:5000/api/',
+    baseUrl: `${URL.DEFAULT}/api/`,
     prepareHeaders: (headers, { getState }) => {
       const token = localStorage.getItem('token')
 
