@@ -15,4 +15,6 @@ export enum routes {
   STORIES_PAGE = 'stories',
   ADD_STORY = 'add-story',
   EDIT_STORY = 'edit-story',
+  ADD_VIOL_ADMIN = 'add-viol',
+  EDIT_VIOL_ADMIN = 'edit-viol',
 }

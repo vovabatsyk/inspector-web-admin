@@ -69,11 +69,11 @@ export const UsersPage = () => {
               ]}
             >
               <List.Item.Meta title={item.username} description={item.email} />
-              <ul style={{ listStyleType: 'none' }}>
+              {/* <ul style={{ listStyleType: 'none' }}>
                 {item.roles.map((val, idx) => (
                   <li key={idx}>статус: {val.description}</li>
                 ))}
-              </ul>
+              </ul> */}
             </List.Item>
           )}
         />

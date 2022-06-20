@@ -8,6 +8,7 @@ import { usersApi } from '../services/UsersApi'
 import { rolesApi } from '../services/RoleApi'
 import { postsApi } from '../services/PostApi'
 import { storiesApi } from '../services/StoryApi'
+import { violAdminsApi } from '../services/ViolAdminsApi'
 const rootReducer = combineReducers({
   authReducer,
   [noticesApi.reducerPath]: noticesApi.reducer,
@@ -18,6 +19,7 @@ const rootReducer = combineReducers({
   [rolesApi.reducerPath]: rolesApi.reducer,
   [postsApi.reducerPath]: postsApi.reducer,
   [storiesApi.reducerPath]: storiesApi.reducer,
+  [violAdminsApi.reducerPath]: violAdminsApi.reducer,
 })
 
 export const setupStore = () => {
@@ -32,7 +34,8 @@ export const setupStore = () => {
         .concat(usersApi.middleware)
         .concat(rolesApi.middleware)
         .concat(postsApi.middleware)
-        .concat(storiesApi.middleware),
+        .concat(storiesApi.middleware)
+        .concat(violAdminsApi.middleware),
   })
 }
 

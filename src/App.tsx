@@ -7,11 +7,13 @@ import AddPostPage from './pages/AddPostPage'
 import { AddQuestionPage } from './pages/AddQuestionPage'
 import { AddStory } from './pages/AddStory'
 import { AddUserPage } from './pages/AddUserPage'
+import { AddViolAdminPage } from './pages/AddViolAdminPage'
 import { EditNoticePage } from './pages/EditNoticePage'
 import { EditPaymentPage } from './pages/EditPaymentPage'
 import { EditQuestionPage } from './pages/EditQuestionPage'
 import { EditStory } from './pages/EditStory'
 import { EditUserPage } from './pages/EditUserPage'
+import { EditViolationAdminPage } from './pages/EditViolationAdminPage'
 import HomePage from './pages/HomePage'
 import { LoginPage } from './pages/LoginPage'
 import PostPage from './pages/PostPage'
@@ -50,10 +52,12 @@ function App() {
               <Route path={routes.ADD_USER_PAGE} element={<AddUserPage />} />
               <Route path={routes.STORIES_PAGE} element={<StoriesPage />} />
               <Route path={routes.ADD_STORY} element={<AddStory />} />
+              <Route path={routes.ADD_VIOL_ADMIN} element={<AddViolAdminPage />} />
               <Route path={`${routes.EDIT_USER_PAGE}/:id`} element={<EditUserPage />} />
               <Route path={`${routes.EDIT_QUESTION_PAGE}/:id`} element={<EditQuestionPage />} />
               <Route path={`${routes.GET_POST}/:id`} element={<PostPage />} />
               <Route path={`${routes.EDIT_STORY}/:id`} element={<EditStory />} />
+              <Route path={`${routes.EDIT_VIOL_ADMIN}/:id`} element={<EditViolationAdminPage />} />
               <Route
                 path={routes.EDIT_PAYMENT_PAGE}
                 element={<EditPaymentPage payment={payment} />}

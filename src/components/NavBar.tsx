@@ -21,7 +21,7 @@ const menuItems: MenuProps['items'] = [
     icon: <PicLeftOutlined />,
   },
   {
-    label: 'Фабули',
+    label: 'Фабули/КУпАП',
     key: 'stories',
     icon: <FormOutlined />,
   },

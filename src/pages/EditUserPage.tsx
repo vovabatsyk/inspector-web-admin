@@ -93,13 +93,13 @@ export const EditUserPage = () => {
         >
           Зберегти
         </Button>
-        <Select defaultValue={''} style={{ width: 120 }} onChange={handleRoleChange}>
+        {/* <Select defaultValue={''} style={{ width: 120 }} onChange={handleRoleChange}>
           {roles.map((role, idx) => (
             <Option key={idx} value={role.value}>
               {role.description}
             </Option>
           ))}
-        </Select>
+        </Select> */}
       </>
     </PageContainer>
   )
